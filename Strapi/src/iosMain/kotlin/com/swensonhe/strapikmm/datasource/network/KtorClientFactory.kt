@@ -17,7 +17,7 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.decodeFromJsonElement
 
-actual class KtorClientFactory actual constructor(context: Any, networkLogLevel: NetworkLogLevel) {
+actual class KtorClientFactory actual constructor(context: Any, networkLogLevel: NetworkLogLevel, private val defaultTimeoutMillis: Long) {
     private val preference = KmmPreference(KVault())
 
     init {
@@ -36,6 +36,12 @@ actual class KtorClientFactory actual constructor(context: Any, networkLogLevel:
             expectSuccess = true
             install(ContentNegotiation) {
                 json()
+            }
+
+            install(HttpTimeout) {
+                requestTimeoutMillis = defaultTimeoutMillis
+                connectTimeoutMillis = defaultTimeoutMillis
+                socketTimeoutMillis = defaultTimeoutMillis
             }
 
             install(DefaultRequest) {
