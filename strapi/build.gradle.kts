@@ -11,7 +11,7 @@ plugins {
     kotlin(Plugins.cocoapods)
     id(Plugins.mavenPublish)
     id(Plugins.signing)
-    id(Plugins.SQL_DELIGHT)
+//    id(Plugins.SQL_DELIGHT)
     id(Plugins.SWIFT_KLIB) version Plugins.Version.SWIFT_KLIB
 }
 
@@ -123,7 +123,7 @@ kotlin {
             dependencies {
                 implementation("androidx.security:security-crypto:1.0.0")
                 api(Ktor.android)
-                api(ProjectDependencies.SqlDelight.ANDROID_DRIVER)
+//                api(ProjectDependencies.SqlDelight.ANDROID_DRIVER)
                 implementation("androidx.activity:activity-ktx:1.7.2")
                 implementation("com.google.android.gms:play-services-auth:20.7.0")
                 implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
@@ -146,7 +146,7 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 api(Ktor.ios)
-                api(ProjectDependencies.SqlDelight.NATIVE_DRIVER)
+//                api(ProjectDependencies.SqlDelight.NATIVE_DRIVER)
             }
 
             iosX64Main.dependsOn(this)
@@ -159,9 +159,9 @@ kotlin {
             dependencies {
                 api(Ktor.js)
                 api(Ktor.jsSeralization)
-                api(ProjectDependencies.SqlDelight.JS_DRIVER)
-                api(npm(ProjectDependencies.SqlDelight.SQL_JS, ProjectDependencies.SQL_JS))
-                api(devNpm(ProjectDependencies.SqlDelight.COPY_WEBPACK_PLUGIN, ProjectDependencies.COPY_WEBPACK_PLUGIN))
+//                api(ProjectDependencies.SqlDelight.JS_DRIVER)
+//                api(npm(ProjectDependencies.SqlDelight.SQL_JS, ProjectDependencies.SQL_JS))
+//                api(devNpm(ProjectDependencies.SqlDelight.COPY_WEBPACK_PLUGIN, ProjectDependencies.COPY_WEBPACK_PLUGIN))
             }
         }
     }
@@ -195,15 +195,15 @@ kotlin {
 //    }
 }
 
-sqldelight {
-    databases {
-//        linkSqlite.set(false)
-        create("AppDatabase") {
-            packageName.set("com.swensonhe.caching.datasource.database")
-            generateAsync.set(true)
-        }
-    }
-}
+//sqldelight {
+//    databases {
+////        linkSqlite.set(false)
+//        create("AppDatabase") {
+//            packageName.set("com.swensonhe.caching.datasource.database")
+//            generateAsync.set(true)
+//        }
+//    }
+//}
 
 android {
     namespace = "com.swensonhe.strapiKMM"
