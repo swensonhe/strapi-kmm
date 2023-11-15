@@ -2,8 +2,10 @@ package com.swensonhe.strapikmm.auth
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class ProfileMetadata(
     @SerialName("firstName")
     val firstName: String?,

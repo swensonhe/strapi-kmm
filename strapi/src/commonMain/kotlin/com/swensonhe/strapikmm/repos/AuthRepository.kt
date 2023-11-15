@@ -7,6 +7,7 @@ import com.swensonhe.strapikmm.constants.SharedConstants
 import com.swensonhe.strapikmm.datasource.network.services.strapi.StrapiService
 import com.swensonhe.strapikmm.model.AuthResponse
 import com.swensonhe.strapikmm.model.FirebaseAuthRequest
+import com.swensonhe.strapikmm.model.SocialLoginResponse
 import com.swensonhe.strapikmm.sharedpreference.KmmPreference
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.ActionCodeSettings
@@ -35,7 +36,7 @@ class AuthRepository(
     }
 
     @Throws(Throwable::class)
-    suspend inline fun <reified T> signInWithGoogle(authOptions: AuthOptions?): T {
+    suspend inline fun <reified T> signInWithGoogle(authOptions: AuthOptions?): SocialLoginResponse<T> {
         authClient.setAuthOptions(authOptions)
         authClient.init()
         val result = suspendCancellableCoroutine { cont ->
@@ -46,11 +47,12 @@ class AuthRepository(
             })
         }
 
-        return signInWithCredentials(result.first, result.second)
+        val user: T = signInWithCredentials(result.first, result.second)
+        return SocialLoginResponse(user, result.second)
     }
 
     @Throws(Throwable::class)
-    suspend inline fun <reified T> signInWithApple(): T {
+    suspend inline fun <reified T> signInWithApple(): SocialLoginResponse<T> {
         val result = suspendCancellableCoroutine { cont ->
             authClient.signInWithApple({ credentials, profileMetadata ->
                 cont.resumeWith(Result.success(Pair(credentials, profileMetadata)))
@@ -59,7 +61,8 @@ class AuthRepository(
             })
         }
 
-        return signInWithCredentials(result.first, result.second)
+        val user: T = signInWithCredentials(result.first, result.second)
+        return SocialLoginResponse(user, result.second)
     }
 
     @Throws(Throwable::class)
