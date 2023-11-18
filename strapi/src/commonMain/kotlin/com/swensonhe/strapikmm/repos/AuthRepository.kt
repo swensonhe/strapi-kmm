@@ -94,7 +94,7 @@ class AuthRepository(
         val response = authService.post<AuthResponse<T>> {
             endpoint("/firebase-auth")
             authenticated(false)
-            body(FirebaseAuthRequest(idToken, profileMetadata))
+            body(FirebaseAuthRequest(idToken))
         }
 
         saveUserToken(response.jwt.orEmpty())
