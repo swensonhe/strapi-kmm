@@ -10,5 +10,5 @@ data class AuthResponse<T>(
     @SerialName("user")
     val user: T,
     @SerialName("jwt")
-    val jwt: String?,
+    val jwt: String,
 )
