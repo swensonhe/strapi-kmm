@@ -6,6 +6,9 @@ on:
       - 'develop'
 permissions:
   contents: write
+concurrency:
+  group: publish-maven-branch
+  cancel-in-progress: false
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
@@ -36,6 +39,16 @@ jobs:
           key: ${{ runner.os }}-konan-${{ hashFiles('**/Dependencies.kt') }}
           restore-keys: |
             ${{ runner.os }}-konan-
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods/repos
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock', '**/build.gradle.kts') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
 
       - name: Update library version
         env:
