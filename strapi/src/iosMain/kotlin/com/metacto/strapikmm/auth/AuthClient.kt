@@ -54,8 +54,7 @@ actual class AuthClient : AuthProvider {
                 val credential = FIROAuthProvider.credentialWithProviderID(
                     providerID = "google.com",
                     IDToken = token,
-                    rawNonce = "",
-                    accessToken = null
+                    rawNonce = ""
                 )
 
                 onResult.invoke(AuthCredential(credential), profileMetadata)
