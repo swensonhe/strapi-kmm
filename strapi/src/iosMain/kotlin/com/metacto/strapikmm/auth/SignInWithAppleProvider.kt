@@ -1,0 +1,79 @@
+package com.metacto.strapikmm.auth
+
+import com.metacto.strapikmm.errorhandling.ErrorMapper
+import platform.AuthenticationServices.*
+import platform.Foundation.NSError
+import platform.Foundation.NSString
+import platform.Foundation.NSUTF8StringEncoding
+import platform.Foundation.create
+import platform.darwin.NSObject
+
+@OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
+class SignInWithAppleProvider(
+    val onSuccess: (String, String, ProfileMetadata) -> Unit,
+    val onFailure: (Throwable) -> Unit
+) : NSObject(),
+    ASAuthorizationControllerDelegateProtocol,
+    ASAuthorizationControllerPresentationContextProvidingProtocol {
+    fun start() {
+        val request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = listOf(ASAuthorizationScopeEmail, ASAuthorizationScopeFullName)
+
+        val controller = ASAuthorizationController(listOf(request))
+        controller.delegate = this
+        controller.presentationContextProvider = this
+        controller.performRequests()
+    }
+
+    override fun authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithAuthorization: ASAuthorization
+    ) {
+        val credential =
+            didCompleteWithAuthorization.credential as? ASAuthorizationAppleIDCredential
+        val idToken = credential?.identityToken?.let {
+            return@let NSString.create(it, NSUTF8StringEncoding) as String?
+        }
+        val authorizationCode = credential?.authorizationCode?.let {
+            return@let NSString.create(it, NSUTF8StringEncoding) as String?
+        }
+
+        val profile = ProfileMetadata(
+            firstName = credential?.fullName?.givenName,
+            lastName = credential?.fullName?.familyName,
+            email = credential?.email,
+            phoneNumber = null,
+            pictureUrl = null
+        )
+
+        if (authorizationCode == null) {
+            onFailure(
+                ErrorMapper.mapToAppException(
+                    "authorizationCode cannot be null",
+                    -1
+                )
+            )
+            return
+        }
+
+        idToken?.let {
+            onSuccess(idToken, authorizationCode, profile)
+        } ?: onFailure(
+            ErrorMapper.mapToAppException(
+                "idToken cannot be null",
+                -1
+            )
+        )
+    }
+
+    override fun authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithError: NSError
+    ) {
+        onFailure(ErrorMapper.mapThrowable(didCompleteWithError))
+    }
+
+    override fun presentationAnchorForAuthorizationController(controller: ASAuthorizationController): ASPresentationAnchor {
+        return ASPresentationAnchor()
+    }
+}

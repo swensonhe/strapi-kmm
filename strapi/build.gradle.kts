@@ -1,0 +1,295 @@
+import co.touchlab.skie.configuration.EnumInterop
+import co.touchlab.skie.configuration.FunctionInterop
+import co.touchlab.skie.configuration.SealedInterop
+import co.touchlab.skie.configuration.SuspendInterop
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.konan.properties.Properties
+import java.io.FileInputStream
+
+plugins {
+    id(Plugins.androidLibrary)
+    kotlin(KotlinPlugins.multiplatform)
+    kotlin(KotlinPlugins.serialization) version Kotlin.version
+    kotlin(Plugins.cocoapods)
+    id(Plugins.mavenPublish)
+    id(Plugins.signing)
+    id(Plugins.SQL_DELIGHT)
+    id(Plugins.SWIFT_KLIB) version Plugins.Version.SWIFT_KLIB
+    id(Plugins.SKIE) version Plugins.Version.SKIE
+}
+
+val publishGroupId: String = project.property("publishGroupId") as String
+val publishEmail: String = project.property("publishEmail") as String
+val publishRepository: String = project.property("publishRepository") as String
+val publishDeveloper: String = project.property("publishDeveloper") as String
+
+val versionProperties = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "versions.properties")))
+}
+
+val currentVersion = versionProperties.getProperty("PUBLISH_VERSION") as String
+val libName = "strapiKMM"
+
+version = currentVersion
+
+skie {
+    features {
+        group {
+            EnumInterop.Enabled(true)
+            SealedInterop.Enabled(true)
+            FunctionInterop.FileScopeConversion.Enabled(true)
+            SuspendInterop.Enabled(true)
+        }
+    }
+}
+
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
+kotlin {
+    applyDefaultHierarchyTemplate()
+
+
+    cocoapods {
+        version = "1.0.0"
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../iosApp/Podfile")
+
+        pod("FirebaseAuth") {
+            linkOnly = true
+            version = "11.7.0"
+        }
+        pod("GoogleSignIn") {
+//            linkOnly = true
+            version = "8.0.0"
+        }
+        pod("Amplitude")
+        pod("AppsFlyerFramework") {
+            version = "~> 6.17.0"
+            moduleName  = "AppsFlyerLib"
+            extraOpts += listOf("-compiler-option", "-fmodules")
+        }
+        pod("CleverTap-iOS-SDK") {
+            moduleName = "CleverTapSDK"
+            extraOpts += listOf("-compiler-option", "-fmodules")
+        }
+
+        framework {
+            baseName = libName + "pods" // DON'T CHANGE THIS LINE, there is a bug in the plugin that requires unique names for each framework
+            isStatic = true
+        }
+    }
+
+    androidTarget {
+        publishLibraryVariants("debug", "release")
+    }
+
+    val xcf = XCFramework(libName)
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework(libName) {
+            baseName = libName
+            isStatic = true
+            xcf.add(this)
+        }
+
+        it.compilations {
+            val main by getting {
+                cinterops {
+                    create("ContactsDataCollector")
+                    create("BackgroundDownloader")
+                    create("GZipDecompressor")
+                    create("DESEncryption")
+                }
+            }
+        }
+    }
+
+    swiftklib {
+        create("ContactsDataCollector") {
+            path = file("src/iosMain/native/contactsdatacollector")
+            packageName("com.metacto.strapikmm.common.contacts.contactsdatacollector")
+        }
+        create("BackgroundDownloader") {
+            path = file("src/iosMain/native/backgrounddownloader")
+            packageName("com.metacto.strapikmm.common.downloader.backgrounddownloader")
+        }
+        create("GZipDecompressor") {
+            path = file("src/iosMain/native/gzipdecompressor")
+            packageName("com.metacto.strapikmm.common.gzip.decompressor")
+        }
+        create("DESEncryption") {
+            path = file("src/iosMain/native/desencryption")
+            packageName("com.metacto.strapikmm.common.encryption")
+        }
+    }
+
+    js(IR) {
+        nodejs()
+    }
+
+    metadata {
+        compilations.matching { it.name == "iosMain" }.all {
+            compileTaskProvider.configure { enabled = false }
+        }
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(Ktor.core)
+                api(Ktor.clientSerialization)
+                api(Ktor.ktorKotlinSerialization)
+                api(Ktor.contentNegotiation)
+                api(Ktor.logback)
+                api(Ktor.logging)
+                api(ProjectDependencies.MULTIPLATFORM_SETTINGS)
+                api("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
+                api("dev.gitlive:firebase-auth:2.1.0")
+
+                api("dev.gitlive:firebase-config:2.1.0")
+            }
+        }
+        val androidMain by getting {
+            val contactsVersion = "1.4.0"
+            val fetchVersion = "3.4.1"
+            val awsS3Version = "2.73.0"
+
+            dependencies {
+                implementation("androidx.security:security-crypto:1.0.0")
+                api(Ktor.android)
+                api(ProjectDependencies.SqlDelight.ANDROID_DRIVER)
+                implementation("androidx.activity:activity-ktx:1.9.2")
+                implementation("com.google.android.gms:play-services-auth:21.3.0")
+                implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.4.0"))
+                api("com.amplitude:android-sdk:2.39.8")
+                api("com.clevertap.android:clevertap-android-sdk:7.3.1")
+                api("com.android.installreferrer:installreferrer:2.2")
+
+                api("com.appsflyer:af-android-sdk:6.14.0")
+                implementation("com.alexstyl:contactstore:$contactsVersion")
+                implementation("com.alexstyl:contactstore-coroutines:$contactsVersion")
+
+                api("com.github.tonyofrancis.Fetch:fetch2:$fetchVersion")
+                api("com.amazonaws:aws-android-sdk-s3:$awsS3Version")
+            }
+        }
+
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                api(Ktor.ios)
+                api(ProjectDependencies.SqlDelight.NATIVE_DRIVER)
+                api("com.rickclephas.kmp:nserror-kt:0.2.0")
+            }
+
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
+
+        val jsMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                api(Ktor.js)
+                api(Ktor.jsSeralization)
+                api(ProjectDependencies.SqlDelight.JS_DRIVER)
+                api(npm(ProjectDependencies.SqlDelight.SQL_JS, ProjectDependencies.SQL_JS))
+                api(devNpm(ProjectDependencies.SqlDelight.COPY_WEBPACK_PLUGIN, ProjectDependencies.COPY_WEBPACK_PLUGIN))
+            }
+        }
+    }
+
+    tasks.withType<KotlinCompile> {
+        compilerOptions {
+            jvmTarget.value(JvmTarget.JVM_17)
+        }
+    }
+
+    task("testClasses")
+}
+
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("com.metacto.caching.datasource.database")
+            generateAsync.set(true)
+        }
+        linkSqlite.set(true)
+    }
+}
+
+android {
+    namespace = "com.metacto.strapiKMM"
+    compileSdk = Application.compileSdk
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = Application.minSdk
+        targetSdk = Application.targetSdk
+        consumerProguardFiles("consumer-rules.pro")
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+
+group = publishGroupId
+version = currentVersion
+
+afterEvaluate {
+    project.publishing.publications.withType(MavenPublication::class.java).forEach {
+        it.groupId = project.group.toString()
+    }
+}
+
+publishing {
+    repositories {
+        // The release workflow commits this directory to the repository's `maven` branch,
+        // which consumers read over raw.githubusercontent.com without credentials.
+        maven {
+            name = "MavenBranch"
+            url = uri(layout.buildDirectory.dir("maven-branch"))
+        }
+    }
+
+    val javadocJar = tasks.register("javadocJar", Jar::class.java) {
+        archiveClassifier.set("javadoc")
+    }
+    publications.withType<MavenPublication> {
+
+        artifact(javadocJar)
+
+        pom {
+            name.set("strapi-kmm")
+            description.set("Shared KMM Module")
+            url.set(publishRepository)
+
+            licenses {
+                license {
+                    name.set("MIT")
+                    url.set("https://opensource.org/licenses/MIT")
+                }
+            }
+            scm {
+                connection.set(publishRepository)
+                url.set(publishRepository)
+            }
+            developers {
+                developer {
+                    name.set(publishDeveloper)
+                    email.set(publishEmail)
+                }
+            }
+        }
+    }
+}

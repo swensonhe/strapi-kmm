@@ -1,5 +1,5 @@
 object Application {
-    const val minSdk = 21
-    const val compileSdk = 31
-    const val targetSdk = 31
+    const val minSdk = 26
+    const val compileSdk = 36
+    const val targetSdk = 35
 }
