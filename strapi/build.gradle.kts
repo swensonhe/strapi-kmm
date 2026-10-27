@@ -129,10 +129,6 @@ kotlin {
         }
     }
 
-    js(IR) {
-        nodejs()
-    }
-
     metadata {
         compilations.matching { it.name == "iosMain" }.all {
             compileTaskProvider.configure { enabled = false }
@@ -194,17 +190,6 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-        }
-
-        val jsMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                api(Ktor.js)
-                api(Ktor.jsSeralization)
-                api(ProjectDependencies.SqlDelight.JS_DRIVER)
-                api(npm(ProjectDependencies.SqlDelight.SQL_JS, ProjectDependencies.SQL_JS))
-                api(devNpm(ProjectDependencies.SqlDelight.COPY_WEBPACK_PLUGIN, ProjectDependencies.COPY_WEBPACK_PLUGIN))
-            }
         }
     }
 
