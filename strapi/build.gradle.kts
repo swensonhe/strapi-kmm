@@ -2,7 +2,6 @@ import co.touchlab.skie.configuration.EnumInterop
 import co.touchlab.skie.configuration.FunctionInterop
 import co.touchlab.skie.configuration.SealedInterop
 import co.touchlab.skie.configuration.SuspendInterop
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -48,7 +47,7 @@ skie {
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
 
     cocoapods {
@@ -136,7 +135,7 @@ kotlin {
 
     metadata {
         compilations.matching { it.name == "iosMain" }.all {
-            compileKotlinTaskProvider.configure { enabled = false }
+            compileTaskProvider.configure { enabled = false }
         }
     }
 
@@ -150,7 +149,7 @@ kotlin {
                 api(Ktor.logback)
                 api(Ktor.logging)
                 api(ProjectDependencies.MULTIPLATFORM_SETTINGS)
-                api("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
+                api("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
                 api("dev.gitlive:firebase-auth:1.12.0-metacto-13")
 
                 api("dev.gitlive:firebase-config:1.10.4")
@@ -255,14 +254,11 @@ afterEvaluate {
 
 publishing {
     repositories {
-        repositories {
-            maven("https://maven.pkg.github.com/Meta-CTO/strapi-kmm") {
-                name = "Github"
-                credentials {
-                    username = gradleLocalProperties(rootDir, providers).getProperty("PUBLISH_REPO_USER") as String
-                    password = gradleLocalProperties(rootDir, providers).getProperty("PUBLISH_REPO_TOKEN") as String
-                }
-            }
+        // The release workflow commits this directory to the repository's `maven` branch,
+        // which consumers read over raw.githubusercontent.com without credentials.
+        maven {
+            name = "MavenBranch"
+            url = uri(layout.buildDirectory.dir("maven-branch"))
         }
     }
 
