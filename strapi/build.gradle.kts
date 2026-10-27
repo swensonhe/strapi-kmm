@@ -150,9 +150,9 @@ kotlin {
                 api(Ktor.logging)
                 api(ProjectDependencies.MULTIPLATFORM_SETTINGS)
                 api("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
-                api("dev.gitlive:firebase-auth:1.12.0-metacto-13")
+                api("dev.gitlive:firebase-auth:2.1.0")
 
-                api("dev.gitlive:firebase-config:1.10.4")
+                api("dev.gitlive:firebase-config:2.1.0")
             }
         }
         val androidMain by getting {
