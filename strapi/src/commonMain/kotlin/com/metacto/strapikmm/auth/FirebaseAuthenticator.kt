@@ -7,7 +7,6 @@ import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.ActionCodeSettings
 import dev.gitlive.firebase.auth.AuthCredential
 import dev.gitlive.firebase.auth.PhoneAuthProvider
-import dev.gitlive.firebase.auth.PhoneVerificationMetadata
 import dev.gitlive.firebase.auth.PhoneVerificationProvider
 import dev.gitlive.firebase.auth.auth
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -123,7 +122,7 @@ class FirebaseAuthenticator(
 
     @Throws(Throwable::class)
     override suspend fun sendPhoneVerification(phoneNumber: String, phoneVerificationProvider: PhoneVerificationProvider): PhoneVerificationMetadata {
-        val metadata = PhoneAuthProvider().verifyPhoneNumber(phoneNumber, phoneVerificationProvider)
+        val metadata = sendPhoneVerificationCode(phoneNumber, phoneVerificationProvider)
         sharedPreference.putSecureString(
             SharedConstants.VERIFICATION_PHONE_NUMBER_VERIFICATION_ID,
             metadata.verificationId
@@ -144,7 +143,7 @@ class FirebaseAuthenticator(
             "Invalid phone number",
             -1
         )
-        return PhoneAuthProvider().verifyPhoneNumber(phoneNumber, phoneVerificationProvider)
+        return sendPhoneVerificationCode(phoneNumber, phoneVerificationProvider)
     }
 
     @Throws(Throwable::class)

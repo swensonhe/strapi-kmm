@@ -12,10 +12,7 @@ import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.auth
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.ObsoleteCoroutinesApi
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
 
@@ -24,11 +21,10 @@ class UserRepository(
     val sharedPreference: KmmPreference,
     private val logoutUseCase: LogoutUseCase
 ) {
-    val userBroadcastChannel = BroadcastChannel<Unit>(Channel.BUFFERED)
+    val userBroadcastChannel = MutableSharedFlow<Unit>(extraBufferCapacity = 64)
 
-    @OptIn(ObsoleteCoroutinesApi::class)
     fun subscribeToUserBroadcastChannel() =
-        userBroadcastChannel.openSubscription().consumeAsFlow().asCommonFlow()
+        userBroadcastChannel.asCommonFlow()
 
     @Throws(Throwable::class)
     suspend inline fun <reified T> getCurrentUser(
@@ -77,7 +73,7 @@ class UserRepository(
         return updateUserData(UpdateTimeZoneRequest(timezone), userQueryBuilder)
     }
 
-    @OptIn(ObsoleteCoroutinesApi::class, DelicateCoroutinesApi::class)
+    @OptIn(DelicateCoroutinesApi::class)
     suspend inline fun <reified T, reified D> updateUserData(
         data: D,
         noinline userQueryBuilder: StrapiQueryBuilder.() -> Unit = {}
@@ -92,7 +88,7 @@ class UserRepository(
         sharedPreference.putString(SharedConstants.CACHED_USER_DATA, userString)
 
         // Broadcast user changes
-        GlobalScope.launch { userBroadcastChannel.send(Unit) }
+        GlobalScope.launch { userBroadcastChannel.emit(Unit) }
 
         return updatedUser
     }

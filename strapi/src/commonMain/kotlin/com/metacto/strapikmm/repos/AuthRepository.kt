@@ -11,7 +11,7 @@ import com.metacto.strapikmm.model.AuthResponse
 import com.metacto.strapikmm.model.FirebaseAuthRequest
 import com.metacto.strapikmm.model.OverrideUserRequest
 import com.metacto.strapikmm.sharedpreference.KmmPreference
-import dev.gitlive.firebase.auth.PhoneVerificationMetadata
+import com.metacto.strapikmm.auth.PhoneVerificationMetadata
 import dev.gitlive.firebase.auth.PhoneVerificationProvider
 import kotlinx.datetime.TimeZone
 
