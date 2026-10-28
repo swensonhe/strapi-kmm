@@ -1,0 +1,423 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.metacto",
+    "module": "strapi",
+    "version": "11.0.64",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-serialization",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "ch.qos.logback",
+          "module": "logback-classic",
+          "version": {
+            "requires": "1.2.10"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "com.russhwolf",
+          "module": "multiplatform-settings",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "dev.gitlive",
+          "module": "firebase-auth",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "dev.gitlive",
+          "module": "firebase-config",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "app.cash.sqldelight",
+          "module": "runtime",
+          "version": {
+            "requires": "2.4.1"
+          }
+        },
+        {
+          "group": "app.cash.sqldelight",
+          "module": "async-extensions",
+          "version": {
+            "requires": "2.4.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.4.20"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-darwin",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "app.cash.sqldelight",
+          "module": "native-driver",
+          "version": {
+            "requires": "2.4.1"
+          }
+        },
+        {
+          "group": "com.rickclephas.kmp",
+          "module": "nserror-kt",
+          "version": {
+            "requires": "0.2.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "strapi-metadata-11.0.64.jar",
+          "url": "strapi-11.0.64.jar",
+          "size": 68929,
+          "sha512": "e787f8b183b4b9b19cd03eea13fda1bd4d23132317a8e47133a42bd5cce7ec8896c86f1ea20c5e5fdc00fc0d812fc3c88108ea04d60fde7580e77fa8cbdfae26",
+          "sha256": "2ea75c479ae5d431b2e27e1b70b8e92e1cfc76c8e6ae5cf4e4948af6b31f4f25",
+          "sha1": "cbada3bb88d11cdf034bb7f469c7c29d7942ef6c",
+          "md5": "194e1d401bd4e115a4cab7c45fd9033c"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "strapi-kotlin-11.0.64-sources.jar",
+          "url": "strapi-11.0.64-sources.jar",
+          "size": 81371,
+          "sha512": "4182255c83e56a8fe52d7d99ceb0dad3c1430d95722f63e029eab5962767b9f9ddd0ecd84d5e1b3d5d133863a456478ffe420e4afd3aa9542165436545c9beac",
+          "sha256": "dbca6ec0674cf5ec4f9d1bc9b90952a09d54c7aadaef6ea1caf892cddfbe4b2d",
+          "sha1": "fa8deacb6ad96415cd44ac1f11f2e546d73c0252",
+          "md5": "faa2281b990c1df2227dd1e137cb73c4"
+        }
+      ]
+    },
+    {
+      "name": "debugApiElements-published",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../strapi-android-debug/11.0.64/strapi-android-debug-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-android-debug",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "debugRuntimeElements-published",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../strapi-android-debug/11.0.64/strapi-android-debug-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-android-debug",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "debugSourcesElements-published",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../strapi-android-debug/11.0.64/strapi-android-debug-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-android-debug",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../strapi-android/11.0.64/strapi-android-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-android",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../strapi-android/11.0.64/strapi-android-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-android",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../strapi-android/11.0.64/strapi-android-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-android",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../strapi-iosarm64/11.0.64/strapi-iosarm64-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-iosarm64",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../strapi-iosarm64/11.0.64/strapi-iosarm64-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-iosarm64",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../strapi-iosarm64/11.0.64/strapi-iosarm64-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-iosarm64",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../strapi-iossimulatorarm64/11.0.64/strapi-iossimulatorarm64-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-iossimulatorarm64",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../strapi-iossimulatorarm64/11.0.64/strapi-iossimulatorarm64-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-iossimulatorarm64",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../strapi-iossimulatorarm64/11.0.64/strapi-iossimulatorarm64-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-iossimulatorarm64",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../strapi-iosx64/11.0.64/strapi-iosx64-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-iosx64",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "iosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../strapi-iosx64/11.0.64/strapi-iosx64-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-iosx64",
+        "version": "11.0.64"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../strapi-iosx64/11.0.64/strapi-iosx64-11.0.64.module",
+        "group": "com.metacto",
+        "module": "strapi-iosx64",
+        "version": "11.0.64"
+      }
+    }
+  ]
+}

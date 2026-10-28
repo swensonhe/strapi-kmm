@@ -1,0 +1,384 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../strapi/11.0.67/strapi-11.0.67.module",
+    "group": "com.metacto",
+    "module": "strapi",
+    "version": "11.0.67",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-darwin",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "app.cash.sqldelight",
+          "module": "native-driver",
+          "version": {
+            "requires": "2.4.1"
+          }
+        },
+        {
+          "group": "com.rickclephas.kmp",
+          "module": "nserror-kt",
+          "version": {
+            "requires": "0.2.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-serialization",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "ch.qos.logback",
+          "module": "logback-classic",
+          "version": {
+            "requires": "1.2.10"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "com.russhwolf",
+          "module": "multiplatform-settings",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "dev.gitlive",
+          "module": "firebase-auth",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "dev.gitlive",
+          "module": "firebase-config",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "app.cash.sqldelight",
+          "module": "runtime",
+          "version": {
+            "requires": "2.4.1"
+          }
+        },
+        {
+          "group": "app.cash.sqldelight",
+          "module": "async-extensions",
+          "version": {
+            "requires": "2.4.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.4.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "strapi-iosSimulatorArm64Main-11.0.67.klib",
+          "url": "strapi-iossimulatorarm64-11.0.67.klib",
+          "size": 776218,
+          "sha512": "1ec597ee2207dbb7a540a94072c3dc9a8f1246b47f82a1fc072dc17484350c05454610cb24b4b872022d9af743e87638149d6595ef78d1c64654a47226d2252b",
+          "sha256": "41ed5fe7eab37d36f36908864e1cab512b4dd913c9219b5f7a642de149168cce",
+          "sha1": "3091f7adfe73f206979ba3e3083c9dac5c88800a",
+          "md5": "1b864d2f7fbab6839eb34d9570203d3e"
+        },
+        {
+          "name": "strapi-iosSimulatorArm64Cinterop-GoogleSignInMain-11.0.67.klib",
+          "url": "strapi-iossimulatorarm64-11.0.67-cinterop-GoogleSignIn.klib",
+          "size": 27778,
+          "sha512": "de5e96f148ddbde5be243dc44f1fde3ec3310ee128591eb712310e607fb5fa9bf6b6b7219db9c8af0c4f9f6f2b2b8169a8a7bf764c7bb3278fe057358a8c8a01",
+          "sha256": "51d4b5a5a1ff35fc6cec7f5d92416ef6ce0369780322a854062cce892559e0af",
+          "sha1": "873abaeec7e6d4b2b1be390c605b79a32a3355ab",
+          "md5": "e883b0663f796a2c6f5a04d414d3a8bf"
+        },
+        {
+          "name": "strapi-iosSimulatorArm64Cinterop-AmplitudeMain-11.0.67.klib",
+          "url": "strapi-iossimulatorarm64-11.0.67-cinterop-Amplitude.klib",
+          "size": 31352,
+          "sha512": "e0da63f27ab5dab1c8e0d327f1007531912c782b8c56cebf6c49c5cfbe2324df4e7420a6c2e52c1fa5df42c810894543ffec9e964f5fdb3a269e80d92aa48b4f",
+          "sha256": "82757595aca26231ae9627b5cb80c8a2a42fb16cf5158ee5fc48fa7385572262",
+          "sha1": "70a261516dcc3389b8664f51ce4ce939c43bf72f",
+          "md5": "a9be8acabacf0edeb80576fbfb9b1fdc"
+        },
+        {
+          "name": "strapi-iosSimulatorArm64Cinterop-AppsFlyerLibMain-11.0.67.klib",
+          "url": "strapi-iossimulatorarm64-11.0.67-cinterop-AppsFlyerLib.klib",
+          "size": 22891,
+          "sha512": "81ee9f7b26ce152ab65704564116f768e802c95219eaaa7f501db5973da5e393ff5c41eaabec32c5c8e463328497a60e189c70dabe9dd407056c8789bc487d31",
+          "sha256": "a37f96a272dc26736fa29afe70a4c5d570bb452ea9c961d9669c602da7d44fde",
+          "sha1": "5a03da9e799ed7b6464fede9dcf75d7f6f24b5c2",
+          "md5": "0dc3a089a162831bdeb5e80b7a305cfe"
+        },
+        {
+          "name": "strapi-iosSimulatorArm64Cinterop-CleverTapSDKMain-11.0.67.klib",
+          "url": "strapi-iossimulatorarm64-11.0.67-cinterop-CleverTapSDK.klib",
+          "size": 85605,
+          "sha512": "5b684ed4f7b63ff6c695b80c02eaa4e6e0cff3584b18d9d925dff0182ad6c22064f33617c54fe7da0b1a1571be688b63d415d134f48cb105a256ac976bbae90d",
+          "sha256": "2f2a0e504499ba558b80f08e91d25f429fb4ebddd35fd8b15b163ef949e9d59b",
+          "sha1": "453f5d37479476f15c961b356233bd4544f66414",
+          "md5": "ad171a7b23fef35e31d14791e3aa4262"
+        },
+        {
+          "name": "strapi-iosSimulatorArm64Cinterop-ContactsDataCollectorMain-11.0.67.klib",
+          "url": "strapi-iossimulatorarm64-11.0.67-cinterop-ContactsDataCollector.klib",
+          "size": 29576,
+          "sha512": "495b8796d19339bae0277f2fbd14f046822f31450509f673d153a9d3078bd0ef326b2fdccb19280d07edfaf30d7de71da6e0e618855907f7dcf259a1cb793490",
+          "sha256": "7f919ba0fb743bf72f7e31640b5bbf183fc7a3831cbb030184abace878eb8808",
+          "sha1": "f103829f20810560fdd162dbc0ce14e3fe532e4a",
+          "md5": "15e7c144000fd24442dd96139756bcbb"
+        },
+        {
+          "name": "strapi-iosSimulatorArm64Cinterop-BackgroundDownloaderMain-11.0.67.klib",
+          "url": "strapi-iossimulatorarm64-11.0.67-cinterop-BackgroundDownloader.klib",
+          "size": 100872,
+          "sha512": "9583d9c5fd68b778b23849e87a4449c4892136f9fdb6015765c1bb1f8ca16e7be30a7b21857a94173d4a538441f68d945c8c1467c97df4056272e54fbc2367f7",
+          "sha256": "855f48fda495f1a855c9488d3488c8eaed9872aca5c9c88fac1216842e998ae4",
+          "sha1": "9a23df7cf3af1e33e0b839cd0e51177d7da793b6",
+          "md5": "059d9574ac1ed9a67d045fd91a564809"
+        },
+        {
+          "name": "strapi-iosSimulatorArm64Cinterop-GZipDecompressorMain-11.0.67.klib",
+          "url": "strapi-iossimulatorarm64-11.0.67-cinterop-GZipDecompressor.klib",
+          "size": 18622,
+          "sha512": "53d0301e9cf9ccfae446287c76b22843e1595c94c5ef37a8d5173ac9e04adb9f98612a8de9c1249c1e0a4a82ef805b95fce0e577ab5b8967cc35696c5b100b20",
+          "sha256": "1a9f6469765a14515034dd2fbecf3dcccb9e501b54829a5d9c770ec3c5032476",
+          "sha1": "3d483d1df1a55b2aaeec70cf0aa4c258f16dbc74",
+          "md5": "e1f355d44ad7b60b3f50e1182897cca3"
+        },
+        {
+          "name": "strapi-iosSimulatorArm64Cinterop-DESEncryptionMain-11.0.67.klib",
+          "url": "strapi-iossimulatorarm64-11.0.67-cinterop-DESEncryption.klib",
+          "size": 18050,
+          "sha512": "39f60a58b6db1ce1d2a07ef9791989536ee629c5168707e8308dcb5acf104572432c7f29397882480f65dbe4aba9239aa3e93029f5c276e0170ce22faff3d66b",
+          "sha256": "14521a28f014566ed03690e8f4d22f831aa0b696e5b635bbe2893c1b8034b923",
+          "sha1": "7621fcebe692918957eab0b2a244e4114e284894",
+          "md5": "00ec5469a09048b2ccd709c159868682"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "strapi-iossimulatorarm64-11.0.67-sources.jar",
+          "url": "strapi-iossimulatorarm64-11.0.67-sources.jar",
+          "size": 81371,
+          "sha512": "e2b479fd92fca3ebb9108d4f29e0b84cbdba1d0cf76cb06b511c87980bce4c713385a46f7b98c3246b9983e18ec0d869ad88a9973e5688b11cb2204bd0ea75f3",
+          "sha256": "f515f10fc0d9f25aa3bb932f5539b0cc57e7063d61823cc082d0f37fefe95f00",
+          "sha1": "a1260b98cccb6a3d89c3aa2396253586ec211d4b",
+          "md5": "a0e5296ab5ad5cfce60368edc15dfac4"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-darwin",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "app.cash.sqldelight",
+          "module": "native-driver",
+          "version": {
+            "requires": "2.4.1"
+          }
+        },
+        {
+          "group": "com.rickclephas.kmp",
+          "module": "nserror-kt",
+          "version": {
+            "requires": "0.2.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-serialization",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "ch.qos.logback",
+          "module": "logback-classic",
+          "version": {
+            "requires": "1.2.10"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "3.6.0"
+          }
+        },
+        {
+          "group": "com.russhwolf",
+          "module": "multiplatform-settings",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "dev.gitlive",
+          "module": "firebase-auth",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "dev.gitlive",
+          "module": "firebase-config",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "app.cash.sqldelight",
+          "module": "runtime",
+          "version": {
+            "requires": "2.4.1"
+          }
+        },
+        {
+          "group": "app.cash.sqldelight",
+          "module": "async-extensions",
+          "version": {
+            "requires": "2.4.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.4.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "strapi-iossimulatorarm64-11.0.67-metadata.jar",
+          "url": "strapi-iossimulatorarm64-11.0.67-metadata.jar",
+          "size": 429046,
+          "sha512": "abaf53429590778e3dae3e58b26aa3411e14c84823aab1ec34f0f5bbb30db980a7eface54289c6216db2b50b9485237df2b7bf1e9dab459679d04979fbd3bcb8",
+          "sha256": "4014e9f816db97902e8dff7e41236f45e2c8376ae8d0e0d0245026652c388525",
+          "sha1": "00007ef302d473cf06ed53963ac5a74a79d05c7f",
+          "md5": "bbfdc8d8859b737e2890d846d4750c30"
+        }
+      ]
+    }
+  ]
+}
