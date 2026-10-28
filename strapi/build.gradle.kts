@@ -275,3 +275,22 @@ publishing {
         }
     }
 }
+
+// swiftklib's swift build compiles each library with debug info that references the clang module
+// cache on the machine that built it. Linked into an app, every reference becomes an Xcode
+// warning about a missing .pcm file, so the debug info is stripped once each library is built.
+tasks.withType<io.github.ttypic.swiftklib.gradle.task.CompileSwiftTask>().configureEach {
+    doLast {
+        swiftBuildDir.resolve(".build").walkTopDown()
+            .filter { it.isFile && it.extension == "a" && it.parentFile.name == "release" }
+            .map { it.canonicalFile }
+            .distinct()
+            .forEach { library ->
+                val exitCode = ProcessBuilder("xcrun", "strip", "-S", library.path)
+                    .inheritIO()
+                    .start()
+                    .waitFor()
+                check(exitCode == 0) { "xcrun strip -S failed for $library" }
+            }
+    }
+}
